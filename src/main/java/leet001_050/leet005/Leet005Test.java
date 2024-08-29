@@ -1,4 +1,4 @@
-package leet1_50.leet005;
+package leet001_050.leet005;
 
 /**
  * Author: Jayczee

@@ -1,6 +1,4 @@
-package leet1_50.leet003;
-
-import java.util.UUID;
+package leet001_050.leet003;
 
 /**
  * Author: Jayczee

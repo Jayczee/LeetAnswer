@@ -1,4 +1,4 @@
-package leet1_50.leet003;
+package leet001_050.leet003;
 
 import java.util.HashSet;
 import java.util.Set;

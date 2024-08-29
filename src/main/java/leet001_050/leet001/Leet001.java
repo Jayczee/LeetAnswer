@@ -1,6 +1,7 @@
-package leet1_50.leet001;
+package leet001_050.leet001;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Author: Jayczee

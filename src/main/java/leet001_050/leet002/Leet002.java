@@ -1,4 +1,4 @@
-package leet1_50.leet002;
+package leet001_050.leet002;
 
 import pojo.ListNode;
 
