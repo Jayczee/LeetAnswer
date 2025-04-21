@@ -6,27 +6,22 @@ package leet101_150.leet135;
  */
 public class Leet135 {
     public int candy(int[] ratings) {
-        int i = 0, sum = 0, pre = 0, inc = 0, dec = 0;
-        while (i < ratings.length) {
-            if (i == 0) {
-                pre = 1;
-                sum += pre;
-                inc = 1;
-                dec = 0;
-            } else if (ratings[i] >= ratings[i - 1]) {
-                pre = ratings[i] > ratings[i - 1] ? pre + 1 : 1;
-                sum += pre;
-                inc = pre;
-                dec = 0;
+        int[] left = new int[ratings.length];
+        for (int i = 0; i < ratings.length; i++) {
+            if (i > 0 && ratings[i] > ratings[i - 1]) {
+                left[i] = left[i - 1] + 1;
             } else {
-                dec++;
-                if (dec == inc) {
-                    dec++;
-                }
-                sum += dec;
-                pre = 1;
+                left[i] = 1;
             }
-            i++;
+        }
+        int right = 0, sum = 0;
+        for (int i = ratings.length - 1; i >= 0; i--) {
+            if (i < ratings.length - 1 && ratings[i] > ratings[i + 1]) {
+                right++;
+            } else {
+                right = 1;
+            }
+            sum += Math.max(left[i], right);
         }
         return sum;
     }
