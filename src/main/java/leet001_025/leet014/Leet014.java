@@ -1,5 +1,8 @@
 package leet001_025.leet014;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Author: Jayczee
  * Date: 2024/9/12
@@ -9,22 +12,16 @@ public class Leet014 {
         if (strs.length == 1) {
             return strs[0];
         }
-        StringBuilder sb = new StringBuilder();
-        int charIndex = 0;
-        while (true) {
-            boolean flag = true;
-            for (int i = 1; i < strs.length; i++) {
-                if (!(charIndex < strs[i].length() && charIndex < strs[0].length() && strs[i].charAt(charIndex) == strs[0].charAt(charIndex))) {
-                    flag = false;
-                }
+        List<String> list = Arrays.stream(strs).sorted().toList();
+        String s1 = list.getFirst();
+        String s2 = list.getLast();
+
+        for (int i = 0; i < s1.length(); i++) {
+            String subStr1 = s1.substring(0, i + 1);
+            if (!s2.startsWith(subStr1)) {
+                return s1.substring(0, i);
             }
-            if (flag) {
-                sb.append(strs[0].charAt(charIndex));
-            } else {
-                break;
-            }
-            charIndex++;
         }
-        return sb.toString();
+        return s1;
     }
 }
