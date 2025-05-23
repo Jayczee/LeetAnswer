@@ -6,9 +6,9 @@ package leet026_050.leet028;
  */
 public class Leet028Test {
     public static void main(String[] args) {
-        Leet028_2 leet028_2 = new Leet028_2();
-        String s1 = "aacaabmvkamfbmafkbmfamriemb";
-        String s2 = "fkb";
-        System.out.println(leet028_2.strStr(s1, s2) == s1.indexOf(s2));
+        Leet028_3 leet028_3 = new Leet028_3();
+        String s1 = "hello";
+        String s2 = "ll";
+        System.out.println(leet028_3.strStr(s1, s2) == s1.indexOf(s2));
     }
 }

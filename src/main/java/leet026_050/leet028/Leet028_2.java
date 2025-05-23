@@ -9,7 +9,6 @@ import java.util.Map;
  */
 public class Leet028_2 {
     public int strStr(String haystack, String needle) {
-        //KMP是真看不懂 使用Sunday算法
 //        aacaab
 //        aab a:2 - 1 + 1 b:1 - 1 + 1
         int scanIndex = 0, hayStackIndex = 0, needleIndex = 0, hayLen = haystack.length(), needleLen = needle.length();
