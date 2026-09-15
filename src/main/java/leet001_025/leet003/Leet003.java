@@ -1,7 +1,7 @@
 package leet001_025.leet003;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Author: Jayczee
@@ -9,18 +9,25 @@ import java.util.Set;
  */
 public class Leet003 {
     public int lengthOfLongestSubstring(String s) {
-        int ans = 0, left = 0, right = 0;
-        Set<Character> set = new HashSet<>();
-        while(right < s.length()){
-            char cur = s.charAt(right);
-            if (set.contains(cur)){
-                set.remove(s.charAt(left));
-                left++;
+        List<Character> list = new ArrayList<>();
+        int l = 0, r = 0, ans = 0;
+        while (l <= r && r < s.length()) {
+            if (l == r) {
+                list.add(s.charAt(l));
+                ans = Math.max(ans, list.size());
+                r++;
             }else{
-                set.add(cur);
-                right++;
+                Character c = s.charAt(r);
+                if (list.contains(c)) {
+                    list.removeFirst();
+                    l++;
+                } else {
+                    list.add(s.charAt(r));
+                    ans = Math.max(ans, list.size());
+                    r++;
+                }
             }
-            ans = Math.max(ans, right-left);
+
         }
         return ans;
     }
