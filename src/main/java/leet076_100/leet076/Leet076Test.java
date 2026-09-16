@@ -6,6 +6,6 @@ package leet076_100.leet076;
  */
 public class Leet076Test {
     public static void main(String[] args) {
-        System.out.println(new Leet076().minWindow("ADOBECODEBANC", "ABC"));
+
     }
 }

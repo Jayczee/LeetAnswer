@@ -7,17 +7,14 @@ package leet026_050.leet027;
  */
 public class Leet027 {
     public int removeElement(int[] nums, int val) {
-        int slow = 0;
-        int fast = 0;
-        int length = 0;
-        while (fast < nums.length) {
+        int k = 0;
+        for (int slow = 0, fast = 0; slow < nums.length && fast < nums.length; fast++) {
             if (nums[fast] != val) {
                 nums[slow] = nums[fast];
-                length++;
+                k++;
                 slow++;
             }
-            fast++;
         }
-        return length;
+        return k;
     }
 }

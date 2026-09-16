@@ -6,17 +6,16 @@ package leet076_100.leet080;
  */
 public class Leet080 {
     public int removeDuplicates(int[] nums) {
-        if (nums.length <= 2) {
+        if (nums.length < 2) {
             return nums.length;
         }
-        int slow = 2, fast = 2;
-        while (fast < nums.length) {
-            if (nums[slow - 2] != nums[fast]) {
-                nums[slow] = nums[fast];
+        int slow = 1;
+        for (int fast = 2; fast < nums.length; fast++) {
+            if (nums[slow] != nums[fast] || nums[slow] != nums[slow - 1]) {
                 slow++;
+                nums[slow] = nums[fast];
             }
-            fast++;
         }
-        return slow;
+        return slow + 1;
     }
 }

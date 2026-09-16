@@ -6,17 +6,19 @@ package leet151_200.leet169;
  */
 public class Leet169 {
     public int majorityElement(int[] nums) {
-        int cur = 0, count = 0;
-        for (int num : nums) {
-            if (count == 0) {
-                cur = num;
-                count = 1;
-            } else if (count > 0 && cur == num) {
-                count++;
-            } else if (count > 0) {
-                count--;
+        int majorNum = nums[0];
+        int majorCount = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != majorNum) {
+                majorCount--;
+            } else {
+                majorCount++;
+            }
+            if (majorCount < 0) {
+                majorNum = nums[i];
+                majorCount = 1;
             }
         }
-        return cur;
+        return majorNum;
     }
 }
