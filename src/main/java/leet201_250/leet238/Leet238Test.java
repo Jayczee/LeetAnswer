@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class Leet238Test {
     public static void main(String[] args) {
-        int[] res = new Leet238().productExceptSelf(new int[]{1, 2, 3, 4});
+        int[] res = new Leet238().productExceptSelf(new int[]{1, 2});
         System.out.println(String.join(",", Arrays.stream(res).mapToObj(String::valueOf).toList()));
     }
 }

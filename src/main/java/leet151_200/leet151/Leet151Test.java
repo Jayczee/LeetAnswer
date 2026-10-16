@@ -6,6 +6,6 @@ package leet151_200.leet151;
  */
 public class Leet151Test {
     public static void main(String[] args) {
-        System.out.println(new Leet151().reverseWords("a good   example"));
+        System.out.println(new Leet151().reverseWords(" go od fdasfdasfaf 123"));
     }
 }

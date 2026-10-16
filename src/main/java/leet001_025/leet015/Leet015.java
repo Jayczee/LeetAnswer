@@ -11,27 +11,24 @@ import java.util.Set;
  */
 public class Leet015 {
     public List<List<Integer>> threeSum(int[] nums) {
-        Set<List<Integer>> set = new HashSet<>();
+        Set<List<Integer>> ans = new HashSet<>();
         Arrays.sort(nums);
-        for (int i = 0; i < nums.length; i++) {
-            if (i > 0 && nums[i] == nums[i - 1]) {
-                continue;
-            }
-            int diff = -nums[i];
-            int l = i + 1, r = nums.length - 1;
-            while (l < r) {
-                int sum = nums[l] + nums[r];
-                if (sum > diff) {
-                    r--;
-                } else if (sum < diff) {
-                    l++;
+        for (int i = 0; i < nums.length - 2; i++) {
+            int left = i + 1, right = nums.length - 1;
+            while (left < right) {
+                int sum = nums[left] + nums[right];
+                if (nums[i] + sum > 0) {
+                    right--;
+                } else if (nums[i] + sum < 0) {
+                    left++;
                 } else {
-                    set.add(Arrays.asList(nums[i], nums[l], nums[r]));
-                    l++;
-                    r--;
+                    ans.add(List.of(nums[i], nums[left], nums[right]));
+                    left++;
+                    right--;
                 }
             }
+
         }
-        return set.stream().toList();
+        return ans.stream().toList();
     }
 }

@@ -6,6 +6,6 @@ package leet201_250.leet209;
  */
 public class Leet209Test {
     public static void main(String[] args) {
-        System.out.println(new Leet209_3().minSubArrayLen(7, new int[]{2, 3, 1, 2, 4, 3}));
+        System.out.println(new Leet209_3().minSubArrayLen(11, new int[]{1, 2, 3, 4, 5}));
     }
 }

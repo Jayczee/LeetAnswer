@@ -6,16 +6,25 @@ package leet101_150.leet125;
  */
 public class Leet125 {
     public boolean isPalindrome(String s) {
-        s = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-        int left = 0, right = s.length() - 1;
+        int left = -1, right = s.length();
+        s = s.toLowerCase();
         while (left < right) {
-            if (s.charAt(left) != s.charAt(right)) {
-                return false;
-            } else {
+            do {
                 left++;
+            } while (left < right && !isLetterOrNumber(s.charAt(left)));
+
+            do {
                 right--;
+            } while (left < right && !isLetterOrNumber(s.charAt(right)));
+            if (left < right && s.charAt(left) != s.charAt(right)) {
+                return false;
             }
         }
+
         return true;
+    }
+
+    public boolean isLetterOrNumber(char a) {
+        return a >= 'a' && a <= 'z' || a >= '0' && a <= '9';
     }
 }

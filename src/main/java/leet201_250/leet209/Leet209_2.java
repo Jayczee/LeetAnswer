@@ -12,12 +12,14 @@ public class Leet209_2 {
         int[] sums = new int[nums.length + 1];
         sums[0] = 0;
         for (int i = 1; i <= nums.length; i++) {
-            sums[i] = sums[i - 1] + nums[i - 1];
+            sums[i] = sums[i - 1] + nums[i - 1];    // 计算前缀和数组  通过前缀和数组之间的相减可以得到原数组任意区间的累加和
         }
+        //所以要做到sum[j] - sum[i-1] >= target
+        //下面的bound就是j，通过二分查找找到j的位置
         for (int i = 1; i <= nums.length; i++) {
             int bound = Arrays.binarySearch(sums, sums[i - 1] + target);
             if (bound < 0) {
-                bound = -bound - 1; // Arrays.binarySearch特性
+                bound = -bound - 1;
             }
             if (bound <= nums.length) {
                 ans = Math.min(ans, bound - (i - 1));

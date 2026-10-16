@@ -6,6 +6,6 @@ package leet101_150.leet125;
  */
 public class Leet125Test {
     public static void main(String[] args) {
-        System.out.println(new Leet125().isPalindrome(",."));
+        System.out.println(new Leet125().isPalindrome(""));
     }
 }

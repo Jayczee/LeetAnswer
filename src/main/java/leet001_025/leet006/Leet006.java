@@ -1,34 +1,35 @@
 package leet001_025.leet006;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Author: Jayczee
  * Date: 2024/8/29
  */
 public class Leet006 {
     public String convert(String s, int numRows) {
-        if (numRows == 1) return s;
-        final List<StringBuilder> sbList = new ArrayList<>();
+        if (numRows == 1) {
+            return s;
+        }
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < numRows; i++) {
-            sbList.add(new StringBuilder());
-        }
-        int flag = 1;
-        int currentRow = 0;
-        for (int i = 0; i < s.length(); i++) {
-            sbList.get(currentRow).append(s.charAt(i));
-            if (currentRow == 0) {
-                flag = 1;
-            } else if (currentRow == numRows - 1) {
-                flag = -1;
+            int pos = i;
+            boolean direct = false;
+            while (pos < s.length()) {
+                if (i == 0) {
+                    direct = true;
+                } else if (i == numRows - 1) {
+                    direct = false;
+                } else {
+                    direct = !direct;
+                }
+                sb.append(s.charAt(pos));
+                int step = countStep(numRows, i, direct);
+                pos += step;
             }
-            currentRow += flag;
         }
-        StringBuilder totalBuilder = new StringBuilder();
-        for (StringBuilder sb : sbList) {
-            totalBuilder.append(sb);
-        }
-        return totalBuilder.toString();
+        return sb.toString();
+    }
+
+    public int countStep(int numRows, int rowNum, Boolean direct) {
+        return direct ? (numRows - rowNum - 1) * 2 : (rowNum + 1 - 1) * 2;
     }
 }

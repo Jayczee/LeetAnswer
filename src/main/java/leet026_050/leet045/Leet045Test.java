@@ -6,6 +6,6 @@ package leet026_050.leet045;
  */
 public class Leet045Test {
     public static void main(String[] args) {
-        System.out.println(new Leet045().jump(new int[]{0}));
+        System.out.println(new Leet045_2().jump(new int[]{1, 1, 3, 1, 1}));
     }
 }

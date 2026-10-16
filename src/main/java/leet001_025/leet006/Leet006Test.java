@@ -7,6 +7,6 @@ package leet001_025.leet006;
 public class Leet006Test {
     public static void main(String[] args) {
         final Leet006 leet006 = new Leet006();
-        System.out.println(leet006.convert("A", 1));
+        System.out.println(leet006.convert("PAYPALISHIRING", 4));
     }
 }

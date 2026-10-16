@@ -6,6 +6,6 @@ package leet051_075.leet058;
  */
 public class Leet058Test {
     public static void main(String[] args) {
-        System.out.println(new Leet058().lengthOfLastWord("j"));
+        System.out.println(new Leet058().lengthOfLastWord(" b"));
     }
 }

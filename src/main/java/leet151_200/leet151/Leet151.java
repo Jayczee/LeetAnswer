@@ -6,35 +6,28 @@ package leet151_200.leet151;
  */
 public class Leet151 {
     public String reverseWords(String s) {
-        StringBuilder sb = new StringBuilder(s.trim());
-        if (sb.indexOf(" ") == -1) {
-            return sb.toString();
-        }
-        sb.reverse();
-        int start = 0;
-        for (int i = 0; i < sb.length(); i++) {
-            if (sb.charAt(i) == ' ') {
-                while (sb.charAt(i + 1) == ' ') {
-                    sb.deleteCharAt(i + 1);
+        s = s.trim();
+        StringBuilder sb = new StringBuilder();
+        int start = -1, len = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) != ' ' && start == -1) {
+                start = i;
+                len++;
+            } else if (s.charAt(i) != ' ' && start != -1) {
+                len++;
+
+            } else if (s.charAt(i) == ' ' && start != -1) {
+                sb.append(s, start - len + 1, start + 1);
+                start = -1;
+                len = 0;
+                if (i != 0) {
+                    sb.append(" ");
                 }
-                reverse(sb, start, i - 1);
-                start = i + 1;
             }
         }
-        if (start < sb.length() - 1) {
-            reverse(sb, start, sb.length() - 1);
+        if (start != -1) {
+            sb.append(s, start - len + 1, start + 1);
         }
-
         return sb.toString();
-    }
-
-    public void reverse(StringBuilder sb, int start, int end) {
-        while (start < end) {
-            char temp = sb.charAt(start);
-            sb.setCharAt(start, sb.charAt(end));
-            sb.setCharAt(end, temp);
-            start++;
-            end--;
-        }
     }
 }

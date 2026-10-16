@@ -9,78 +9,62 @@ import java.util.List;
  */
 public class Leet068 {
     public List<String> fullJustify(String[] words, int maxWidth) {
-        List<String> res = new ArrayList<>();
-        int i = 0;
+        List<String> ans = new ArrayList<>();
+
+        List<String> temp = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        while (i < words.length) {
-            String word = words[i];
-            if (sb.isEmpty()) {
-                if (maxWidth >= word.length()) {
-                    sb.append(word);
-                    i++;
+        for (int i = 0; i < words.length; i++) {
+            String s = words[i];
+            if (sb.length() + s.length() + (sb.isEmpty() ? 0 : 1) <= maxWidth) {
+                sb.append(sb.isEmpty() ? s : " " + s);
+                temp.add(s);
+
+                if (i == words.length - 1) {
+                    int restBlank = maxWidth - sb.length();
+                    sb.append(" ".repeat(restBlank));
+                    ans.add(sb.toString());
                 }
             } else {
-                if (maxWidth >= sb.length() + word.length() + 1) {
-                    sb.append(" ").append(word);
-                    i++;
+                if (temp.size() == 1) {
+                    int restBlank = maxWidth - temp.getFirst().length();
+                    sb.append(" ".repeat(Math.max(0, restBlank)));
+                    ans.add(sb.toString());
+                } else if (i - 1 == words.length - 1) {
+                    int totalLen = 0;
+                    for (String str : temp) {
+                        totalLen += str.length();
+                    }
+                    int restBlank = maxWidth - totalLen - (temp.size() - 1);
+                    sb.append(" ".repeat(Math.max(0, restBlank)));
+                    ans.add(sb.toString());
                 } else {
-                    res.add(sb.toString());
-                    sb = new StringBuilder();
+                    int totalLen = 0;
+                    for (String str : temp) {
+                        totalLen += str.length();
+                    }
+                    int restBlank = maxWidth - totalLen;
+                    int gap = temp.size() - 1;
+                    int avgBlank = restBlank / gap;
+                    int modBlank = restBlank % gap;
+
+                    sb.setLength(0);
+                    for (String str : temp) {
+
+                        if (sb.isEmpty()) {
+                            sb.append(str);
+                        } else {
+                            int blankCount = avgBlank + (modBlank > 0 ? 1 : 0);
+                            sb.append(" ".repeat(blankCount)).append(str);
+                            modBlank--;
+                        }
+                    }
+                    ans.add(sb.toString());
                 }
-            }
-            if (i >= words.length) {
-                res.add(sb.toString());
-            }
-        }
-        for (int j = 0; j < res.size(); j++) {
-            String s = res.get(j);
-            if (j == res.size() - 1 && s.length() < maxWidth) {
-                res.set(j, s + " ".repeat(maxWidth - s.length()));
-            } else if (j < res.size() - 1) {
-                if (s.length() < maxWidth) {
-                    res.set(j, adjustSpaces(s, maxWidth));
-                }
+                sb.setLength(0);
+                temp.clear();
+                i--;
             }
         }
-        return res;
-    }
-
-    public String adjustSpaces(String s, int maxWidth) {
-        String[] words = s.split(" ");
-        int wordCount = words.length;
-
-        if (wordCount == 1) {
-            StringBuilder single = new StringBuilder(words[0]);
-            while (single.length() < maxWidth) {
-                single.append(' ');
-            }
-            return single.toString();
-        }
-
-        int sumWordLengths = 0;
-        for (String w : words) {
-            sumWordLengths += w.length();
-        }
-
-        int totalSpaces = maxWidth - sumWordLengths;
-        int gaps = wordCount - 1;
-
-        int extraPerGap = totalSpaces / gaps;
-        int remainder = totalSpaces % gaps;
-
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < gaps; i++) {
-            result.append(words[i]);
-            int spacesToAdd = extraPerGap;
-            if (i < remainder) {
-                spacesToAdd++;
-            }
-            for (int k = 0; k < spacesToAdd; k++) {
-                result.append(' ');
-            }
-        }
-        result.append(words[gaps]);
-
-        return result.toString();
+        return ans;
     }
 }

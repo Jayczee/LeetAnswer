@@ -6,19 +6,16 @@ package leet001_025.leet011;
  */
 public class Leet011 {
     public int maxArea(int[] height) {
-        int i = 0, j = height.length - 1;
-        int area = 0;
-        while (i < j) {
-            int tmpArea = Math.min(height[i], height[j]) * (j - i);
-            if (tmpArea > area) {
-                area = tmpArea;
-            }
-            if (height[i] < height[j]) {
-                i++;
+        int left = 0, right = height.length - 1, max = 0;
+        while (left < right) {
+            int heightL = height[left], heightR = height[right];
+            max = Math.max(max, (right - left) * Math.min(heightL, heightR));
+            if (heightL > heightR) {
+                right--;
             } else {
-                j--;
+                left++;
             }
         }
-        return area;
+        return max;
     }
 }

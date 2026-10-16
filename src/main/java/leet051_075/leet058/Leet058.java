@@ -6,20 +6,19 @@ package leet051_075.leet058;
  */
 public class Leet058 {
     public int lengthOfLastWord(String s) {
-        int len = s.length();
-        boolean flag = false;
-        int res = 0;
-        for (int i = len - 1; i >= 0; i--) {
-            char c = s.charAt(i);
-            if (!flag && c != ' ') {
-                flag = true;
-                res = 1;
-            } else if (flag && c != ' ') {
-                res++;
-            } else if (flag) {
-                return res;
+        int start = -1, index = s.length() - 1;
+        while (index >= 0) {
+            if (start == -1 && s.charAt(index) != ' ') {
+                start = index;
+            } else if (start != -1 && s.charAt(index) == ' ') {
+                return start - index;
             }
+            index--;
         }
-        return res;
+        if (start != -1) {
+            return start + 1;
+        } else {
+            return 1;
+        }
     }
 }

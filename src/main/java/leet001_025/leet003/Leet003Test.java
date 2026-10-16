@@ -7,6 +7,6 @@ package leet001_025.leet003;
 public class Leet003Test {
     public static void main(String[] args) {
         Leet003 leet003 = new Leet003();
-        System.out.println(leet003.lengthOfLongestSubstring("qrsvbspk"));
+        System.out.println(leet003.lengthOfLongestSubstring("pwwkew"));
     }
 }

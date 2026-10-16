@@ -6,16 +6,17 @@ package leet101_150.leet122;
  */
 public class Leet122 {
     public int maxProfit(int[] prices) {
-        int[][] dp = new int[prices.length][2];
-        for (int i = 0; i < prices.length; i++) {
-            if (i == 0) {
-                dp[i][0] = 0;
-                dp[i][1] = -prices[i];
-            } else {
-                dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
-                dp[i][1] = Math.max(dp[i - 1][0] - prices[i], dp[i - 1][1]);
+        // 1 2 3 4 5
+        // 3 1 2 4 5
+        if (prices.length == 1) return 0;
+        int slow = 0, fast = 1, totalProfit = 0;
+        while (fast < prices.length) {
+            if (prices[fast] >= prices[slow]) {
+                totalProfit += prices[fast] - prices[slow];
             }
+            slow = fast;
+            fast++;
         }
-        return dp[prices.length - 1][0];
+        return totalProfit;
     }
 }

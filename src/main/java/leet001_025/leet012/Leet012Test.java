@@ -7,6 +7,8 @@ package leet001_025.leet012;
 public class Leet012Test {
     public static void main(String[] args) {
         Leet012 leet012 = new Leet012();
-        System.out.println(leet012.intToRoman(3998));
+        System.out.println(leet012.intToRoman(58
+
+        ));
     }
 }
